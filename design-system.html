@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System — Aprenda a Criar Páginas e Sites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* === CORES === */
+    --bg-900:#070708;
+    --bg-800:#0d0d10;
+    --bg-700:#141418;
+    --bg-600:#1c1c22;
+
+    --red-500:#ff1f2d;
+    --red-600:#e60019;
+    --red-400:#ff4d57;
+    --red-glow:rgba(255,31,45,.55);
+    --red-soft:rgba(255,31,45,.12);
+
+    --txt-100:#ffffff;
+    --txt-300:#c7c7cf;
+    --txt-500:#8a8a94;
+    --line:rgba(255,255,255,.08);
+
+    --font-head:'Sora',sans-serif;
+    --font-body:'Inter',sans-serif;
+
+    --radius-sm:10px;
+    --radius:16px;
+    --radius-lg:24px;
+    --shadow-glow:0 0 40px var(--red-glow);
+    --shadow-card:0 20px 60px rgba(0,0,0,.6);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg-900);
+    color:var(--txt-300);
+    font-family:var(--font-body);
+    line-height:1.6;
+    padding:60px 24px;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(255,31,45,.10), transparent 40%),
+      radial-gradient(circle at 90% 30%, rgba(255,31,45,.06), transparent 35%);
+  }
+  .wrap{max-width:1080px;margin:0 auto}
+  h1,h2,h3,h4{font-family:var(--font-head);color:var(--txt-100);line-height:1.15}
+  .doc-title{font-size:42px;font-weight:800;letter-spacing:-.5px}
+  .doc-sub{color:var(--red-400);font-weight:600;letter-spacing:3px;text-transform:uppercase;font-size:13px;margin-bottom:10px;font-family:var(--font-head)}
+  section{margin:64px 0}
+  .sec-label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--txt-500);border-left:3px solid var(--red-500);padding-left:12px;margin-bottom:28px;font-family:var(--font-head);font-weight:600}
+
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .swatch{border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--line);background:var(--bg-700)}
+  .swatch .color{height:80px}
+  .swatch .meta{padding:10px 12px;font-size:12px}
+  .swatch .meta b{display:block;color:var(--txt-100);font-size:13px;font-family:var(--font-head)}
+  .swatch .meta span{color:var(--txt-500);font-family:monospace}
+
+  .type-row{padding:18px 0;border-bottom:1px solid var(--line)}
+  .type-row small{color:var(--txt-500);font-family:monospace;font-size:11px;display:block;margin-bottom:4px}
+  .display{font-size:54px;font-weight:800;color:var(--txt-100);letter-spacing:-1px;line-height:1.05}
+  .display .hl{color:var(--red-500)}
+  .h2{font-size:38px;font-weight:800;color:var(--txt-100)}
+  .h3{font-size:24px;font-weight:700;color:var(--txt-100)}
+  .body{font-size:16px;color:var(--txt-300)}
+  .small{font-size:13px;color:var(--txt-500)}
+
+  .btns{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .btn{font-family:var(--font-head);font-weight:600;border:none;cursor:pointer;border-radius:999px;padding:15px 30px;font-size:15px;transition:.25s;display:inline-flex;gap:8px;align-items:center}
+  .btn-primary{background:var(--red-500);color:#fff;box-shadow:var(--shadow-glow)}
+  .btn-primary:hover{background:var(--red-600);transform:translateY(-2px);box-shadow:0 0 55px var(--red-glow)}
+  .btn-ghost{background:transparent;color:var(--txt-100);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--red-500);color:var(--red-400)}
+  .btn-pill{background:var(--red-soft);color:var(--red-400);border:1px solid rgba(255,31,45,.3);padding:8px 18px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+
+  .grid{display:grid;gap:20px}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .card{background:linear-gradient(180deg,var(--bg-700),var(--bg-800));border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.25s}
+  .card:hover{border-color:rgba(255,31,45,.4);box-shadow:0 0 30px rgba(255,31,45,.12);transform:translateY(-3px)}
+
+  .num-card{display:flex;gap:18px;align-items:flex-start}
+  .num{font-family:var(--font-head);font-weight:800;font-size:30px;color:var(--red-500);min-width:48px;text-shadow:0 0 18px var(--red-glow)}
+  .num-card h3{font-size:19px;margin-bottom:6px}
+  .num-card p{font-size:14px;color:var(--txt-500)}
+
+  .bonus{text-align:center;background:linear-gradient(180deg,rgba(255,31,45,.06),var(--bg-800));border:1px solid rgba(255,31,45,.25);border-radius:var(--radius);padding:28px 22px;position:relative}
+  .bonus .tag{position:absolute;top:14px;right:14px;font-size:10px;letter-spacing:1px;color:var(--red-400);text-transform:uppercase;font-family:var(--font-head)}
+  .bonus .ico{width:60px;height:60px;border-radius:14px;background:var(--red-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px;box-shadow:var(--shadow-glow)}
+  .bonus h3{font-size:17px;margin-bottom:8px}
+  .bonus p{font-size:13px;color:var(--txt-500)}
+
+  .price-box{background:linear-gradient(160deg,#141418,#0b0b0d);border:1px solid rgba(255,31,45,.3);border-radius:var(--radius-lg);padding:34px;text-align:center;max-width:380px;box-shadow:var(--shadow-card)}
+  .price-box .from{color:var(--txt-500);text-decoration:line-through;font-size:15px}
+  .price-box .now{font-family:var(--font-head);font-weight:800;font-size:58px;color:#fff;line-height:1;margin:6px 0}
+  .price-box .now small{font-size:22px;color:var(--red-400)}
+  .price-box .install{color:var(--txt-300);font-size:14px;margin-bottom:22px}
+
+  .tarja{background:var(--red-500);color:#fff;font-family:var(--font-head);font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:10px 0;text-align:center;font-size:13px;transform:rotate(-1.5deg);box-shadow:var(--shadow-glow)}
+
+  .note{background:var(--bg-800);border:1px dashed var(--line);border-radius:var(--radius);padding:20px 24px;font-size:14px;color:var(--txt-500)}
+  .note b{color:var(--red-400)}
+  @media(max-width:760px){.grid-2,.grid-3{grid-template-columns:1fr}.display{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="doc-sub">Design System v1</p>
+  <h1 class="doc-title">Aprenda a Criar Páginas e Sites</h1>
+  <p class="body" style="margin-top:10px;max-width:620px">Linguagem visual <b style="color:var(--red-400)">dark tech / sci-fi</b> inspirada nas referências enviadas, adaptada para a paleta <b style="color:var(--red-400)">preto + vermelho</b>. Glow neon vermelho, glassmorphism e seções numeradas.</p>
+
+  <section>
+    <div class="sec-label">01 · Paleta de Cores</div>
+    <div class="swatches">
+      <div class="swatch"><div class="color" style="background:#070708"></div><div class="meta"><b>BG 900</b><span>#070708</span></div></div>
+      <div class="swatch"><div class="color" style="background:#0d0d10"></div><div class="meta"><b>BG 800</b><span>#0d0d10</span></div></div>
+      <div class="swatch"><div class="color" style="background:#141418"></div><div class="meta"><b>BG 700 (card)</b><span>#141418</span></div></div>
+      <div class="swatch"><div class="color" style="background:#ff1f2d"></div><div class="meta"><b>Red 500 (CTA)</b><span>#ff1f2d</span></div></div>
+      <div class="swatch"><div class="color" style="background:#e60019"></div><div class="meta"><b>Red 600 (hover)</b><span>#e60019</span></div></div>
+      <div class="swatch"><div class="color" style="background:#ff4d57"></div><div class="meta"><b>Red 400 (texto)</b><span>#ff4d57</span></div></div>
+      <div class="swatch"><div class="color" style="background:#ffffff"></div><div class="meta"><b>Texto 100</b><span>#ffffff</span></div></div>
+      <div class="swatch"><div class="color" style="background:#8a8a94"></div><div class="meta"><b>Texto 500</b><span>#8a8a94</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">02 · Tipografia — Sora (títulos) + Inter (texto)</div>
+    <div class="type-row"><small>Display / Hero — Sora 800</small><div class="display">Crie páginas que <span class="hl">vendem</span></div></div>
+    <div class="type-row"><small>H2 — Sora 800</small><div class="h2">Confira o que você vai ter acesso</div></div>
+    <div class="type-row"><small>H3 — Sora 700</small><div class="h3">Criação da Página</div></div>
+    <div class="type-row"><small>Body — Inter 400</small><p class="body">Aprenda do zero a criar landing pages profissionais, mesmo sem saber programar, e cobre muito mais caro pelos seus projetos.</p></div>
+    <div class="type-row" style="border:none"><small>Small / Legenda — Inter 400</small><p class="small">7 dias de garantia incondicional</p></div>
+  </section>
+
+  <section>
+    <div class="sec-label">03 · Botões & Pills</div>
+    <div class="btns">
+      <button class="btn btn-primary">QUERO COMEÇAR AGORA →</button>
+      <button class="btn btn-ghost">Ver conteúdo</button>
+      <span class="btn-pill">Vagas limitadas</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">04 · Cards de Módulo (numerados)</div>
+    <div class="grid grid-2">
+      <div class="card num-card"><div class="num">01</div><div><h3>Boas-vindas</h3><p>Como aproveitar o curso e o que você vai conquistar.</p></div></div>
+      <div class="card num-card"><div class="num">02</div><div><h3>Básico de Design</h3><p>Fundamentos visuais para páginas que convertem.</p></div></div>
+      <div class="card num-card"><div class="num">03</div><div><h3>Copy</h3><p>Escreva textos que vendem e prendem atenção.</p></div></div>
+      <div class="card num-card"><div class="num">04</div><div><h3>Criação da Página</h3><p>Monte sua landing page do zero, passo a passo.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">05 · Cards de Bônus</div>
+    <div class="grid grid-3">
+      <div class="bonus"><span class="tag">Bônus 01</span><div class="ico">🤖</div><h3>Criando com IA</h3><p>Use inteligência artificial para acelerar a criação das suas páginas.</p></div>
+      <div class="bonus"><span class="tag">Bônus 02</span><div class="ico">🎨</div><h3>Gerando Imagem com IA</h3><p>Crie imagens profissionais sem depender de banco de imagens.</p></div>
+      <div class="bonus"><span class="tag">Extra</span><div class="ico">⚡</div><h3>Suporte & Comunidade</h3><p>Tire dúvidas e evolua junto com outros alunos.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">06 · Bloco de Oferta & Tarja</div>
+    <div class="tarja" style="margin-bottom:30px">★ RISCO ZERO · 07 DIAS DE GARANTIA ★</div>
+    <div class="price-box">
+      <span class="from">De R$ 197</span>
+      <div class="now"><small>R$</small> 27<small>,00</small></div>
+      <p class="install">ou parcele no cartão</p>
+      <button class="btn btn-primary" style="width:100%;justify-content:center">QUERO ACESSO AGORA →</button>
+      <p class="small" style="margin-top:14px">🔒 Compra 100% segura</p>
+    </div>
+  </section>
+
+  <div class="note">
+    <b>Próximo passo:</b> com esse Design System aprovado, eu monto a <b>página de vendas completa</b> (hero, dores, conteúdo/módulos numerados, bônus, autoridade do Gabriel, oferta R$27, garantia 7 dias e FAQ) usando exatamente esses tokens. <br><br>
+    Me diz: <b>esse visual preto + vermelho com glow tá na vibe?</b> Quer mais escuro, mais agressivo, mais "clean"? Ajusto e já parto pra página.
+  </div>
+
+</div>
+</body>
+</html>
